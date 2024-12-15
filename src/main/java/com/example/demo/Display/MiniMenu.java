@@ -24,7 +24,6 @@ public class MiniMenu {
      * @param root The root group to which the menu will be added.
      * @param onContinue A {@link Runnable} action to execute when "Continue" is clicked.
      * @param onReturnToMainMenu A {@link Runnable} action to execute when "Return to Main Menu" is clicked.
-     * @throws IllegalArgumentException if any required resource image is not found.
      */
     public MiniMenu(Group root, Runnable onContinue, Runnable onReturnToMainMenu) {
         menuLayout = new VBox(20); // Vertical layout with spacing
