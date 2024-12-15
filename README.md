@@ -70,14 +70,34 @@ The reason for not implementing these changes were due to time constraints, I wa
 
 ## New Java Classes
 
+**Boss**
+
+**Changes made**
+
 
 ## Modified Java Classes
+
+**Main**
+
+**Changes made**
+- Most of the screen functions were moved to `ScreenManager`, therefore the main class calls the ScreenManager to handle the main menu when the appliation is running. This was because incorporating a fullscreen on the application would be easier if that implementation as on a seperate class completely.
+
+**Controller**
+
+**Changes made**
+
+
+**Boss**
+
+**Changes made**
+- Added invincibility logic so that the boss can't take anymore damage until their invincibility runs out.
+- Added `startFlashingEffect` as a way to indicate to the player that the boss is currently invincible until the flashing effect runs out.
 
 **EnemyPlane**
 
 **Changes Made**
 - Added invincibility logic so that the enemies can't take anymore damage until their invincibility runs out.
-- Added `startFlashingEffect` as a way to indicate to the player that they are currently invincible until the flashing effect runs out.
+- Added `startFlashingEffect` as a way to indicate to the player that the enemy planes are currently invincible until the flashing effect runs out.
 
 **UserPlane**
 
@@ -91,6 +111,11 @@ The reason for not implementing these changes were due to time constraints, I wa
 **Changes Made**
 - Adjusted IMAGE_HEIGHT from 125 to 7. This change optimizes the visual scaling of projectiles, making them smaller for better representation on the game screen.
 
+**EnemyProjectile**
+
+**Changes Made**
+- Adjusted IMAGE_HEIGHT from 50 to 25. This change optimizes the visual scaling of projectiles, making them smaller for better representation on the game screen.
+
 **ActiveActor**
 
 **Changes Made**
@@ -102,6 +127,21 @@ The reason for not implementing these changes were due to time constraints, I wa
 - Added a new `isInvincible` flag as a final field. This is to manage the actor’s state more robustly, particularly if there’s a need to handle invincibility logic. The flag improves flexibility for extending game mechanics.
 
 
+**GameOverImage**
+
+**Changes made**
+- Ensures the Game Over image resource is loaded safely and throws an `IllegalArgumentException` if unavailable.
+
+**WinImage**
+
+**Changes made**
+- Ensures the Win image resource is loaded safely and throws an `IllegalArgumentException` if unavailable.
+
+
+**ShieldImage**
+
+**Changes made**
+- Ensures the Shield image resource is loaded safely and throws an `IllegalArgumentException` if unavailable.
 
 **Level One (LevelOne.java)**
 
