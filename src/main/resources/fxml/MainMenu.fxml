@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.demo.controller.MainMenuController">
+    <!-- Background Image -->
+    <ImageView fitHeight="900.0" fitWidth="1600.0" layoutX="-62.0">
+        <Image url="@../com/example/demo/images/MainMenu.jpg"/>
+    </ImageView>
+    <ImageView fitHeight="150" fitWidth="300" layoutX="907.0" layoutY="483.0">
+        <Image url="@../com/example/demo/images/Tutorial.png"/>
+    </ImageView>
+    <ImageView fitHeight="150" fitWidth="300" layoutX="322.0" layoutY="483.0">
+        <Image url="@../com/example/demo/images/Play.png"/>
+    </ImageView>
+    <ImageView fitHeight="150" fitWidth="300" layoutX="619.0" layoutY="708.0">
+        <Image url="@../com/example/demo/images/Exit.png"/>
+    </ImageView>
+
+    <!-- Buttons for the menu -->
+    <Button layoutX="322.0" layoutY="483.0" mnemonicParsing="false" onAction="#startGame" prefHeight="150.0"
+            prefWidth="300.0" style="-fx-background-color: transparent;"/>
+
+    <Button layoutX="907.0" layoutY="483.0" mnemonicParsing="false" onAction="#showTutorial" prefHeight="150.0"
+            prefWidth="300.0" style="-fx-background-color: transparent;"/>
+
+    <Button layoutX="617.0" layoutY="709.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="150.0"
+            prefWidth="300.0" style="-fx-background-color: transparent;"/>
+</AnchorPane>
