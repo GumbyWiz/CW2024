@@ -109,14 +109,21 @@ Purpose: Handles gameplay for the first level, including enemy spawning and win 
 LevelTwo (com/example/demo/Level/LevelTwo.java)
 
 Purpose: Implements a boss-level stage with unique logic for spawning and transitioning.
-Modified Java Classes
-LevelParent (com/example/demo/Level/LevelParent.java)
-Changes Made:
-Added mini menu support for pausing and resuming the game.
-Enhanced collision handling for enemy penetration.
+## Modified Java Classes
+
+**LevelParent** (com/example/demo/Level/LevelParent.java)
+
+**Changes Made**
+- Added mini menu support for pausing and resuming the game.
+- Enhanced collision handling for enemy penetration.
+- Added `isGameRunning` to handle when the player can fire, since without it the player would be able to fire a projectile during the win/lose screen and when the game was paused.
+- Modified `goToNextLevel` to prevent a memory leak using `timeline.stop` otherwise the game would attempt to load the next level without stopping the previous level.
 Reason: To provide a consistent parent class for managing shared game logic across levels.
-Unexpected Problems
-Resource Path Issues
+
+**Unexpected Problems**
+
+Could not find a way to change observable.
+Resource Path Issues.
 
 Background images and boss shield images caused errors when loaded.
 Resolution: Used getResource() to safely fetch image files.
