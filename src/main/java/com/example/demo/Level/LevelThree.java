@@ -12,8 +12,8 @@ public class LevelThree extends LevelParent {
 
     private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/Evening.jpg";
     private static final String NEXT_LEVEL = "com.example.demo.Level.LevelFour";
-    private static final int TOTAL_ENEMIES = 7;
-    private static final int KILLS_TO_ADVANCE = 3;
+    private static final int TOTAL_ENEMIES = 8;
+    private static final int KILLS_TO_ADVANCE = 6;
     private static final double ENEMY_SPAWN_PROBABILITY = 0.20;
     private static final int PLAYER_INITIAL_HEALTH = 5;
 
