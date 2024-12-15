@@ -71,45 +71,55 @@ The reason for not implementing these changes were due to time constraints, I wa
 ## New Java Classes
 
 
+## Modified Java Classes
+
+**EnemyPlane**
+
+**Changes Made**
+- Added invincibility logic so that the enemies can't take anymore damage until their invincibility runs out.
+- Added `startFlashingEffect` as a way to indicate to the player that they are currently invincible until the flashing effect runs out.
+
+**UserPlane**
+
+**Changes Made**
+- Added `decrementKillCount` to make sure that when an enemy plane passes through the border the kill count will not increase, this will not affect how kills are counted normally either.
+- Added invincibility logic so that the player can't take anymore damage until their invincibility runs out.
+- Added `startFlashingEffect` as a way to indicate to the player that they are currently invincible until the flashing effect runs out.
+
+**UserProjectile**
+
+**Changes Made**
+- Adjusted IMAGE_HEIGHT from 125 to 7. This change optimizes the visual scaling of projectiles, making them smaller for better representation on the game screen.
+
+**ActiveActor**
+
+**Changes Made**
+- The setImage method was updated to use getClass().getResource(resourcePath).toExternalForm(). This ensures that the image resource is loaded properly from the classpath.
+
+**ActiveActorDestructible**
+
+**Changes Made**
+- Added a new `isInvincible` flag as a final field. This is to manage the actor’s state more robustly, particularly if there’s a need to handle invincibility logic. The flag improves flexibility for extending game mechanics.
+
+
+
 **Level One (LevelOne.java)**
 
-Introduces the player with 5 health points.
-Spawns enemies randomly with a defined probability (20%).
-Transitions to Level Two after 2 enemy kills.
+**Changes Made**
+- `PLAYER_INTIIAL_HEALTH` fixes the playrs health to 5 at the start of every level
+- Spawns enemies randomly with a defined probability.
+- Transitions to Level Two after the `KILLS_TO_ADVANCE` has been achieved.
+- Initializes mini menu.
 
 **Level Two (LevelTwo.java)**
 
-Spawns a Boss enemy when no regular enemies are active.
-Implements a boss health shield.
-Transitions to Level Three upon defeating the boss.
-Pause Menu
+**Changes Made**
+- `boss=new Boss();` initializes the boss, without it the boss wont spawn in the level.
+- `spawnEnemyUnits` in this class only spawns the boss and no other enemies.
+- Implements a boss health shield.
+- Transitions to Level Three upon defeating the boss.
+- Initializes mini menu.
 
-Added a MiniMenu that pauses the game (P key) with options to continue or return to the main menu.
-Implemented but Not Working Properly
-Enemy Collision Detection
-
-While projectiles and planes collide, sometimes collisions fail to register due to hitbox inaccuracies.
-Game State Persistence
-
-The game does not save progress when quitting, requiring a restart for level transitions.
-Features Not Implemented
-Level Three
-
-Code references LevelThree, but it has not been implemented.
-Reason: Limited time and scope of the coursework.
-User Stats Display
-
-Displaying score and stats (e.g., total kills, health) during gameplay remains unimplemented.
-New Java Classes
-The following new classes were introduced:
-
-LevelOne (com/example/demo/Level/LevelOne.java)
-
-Purpose: Handles gameplay for the first level, including enemy spawning and win conditions.
-LevelTwo (com/example/demo/Level/LevelTwo.java)
-
-Purpose: Implements a boss-level stage with unique logic for spawning and transitioning.
-## Modified Java Classes
 
 **LevelParent** (com/example/demo/Level/LevelParent.java)
 
@@ -117,17 +127,22 @@ Purpose: Implements a boss-level stage with unique logic for spawning and transi
 - Added mini menu support for pausing and resuming the game.
 - Enhanced collision handling for enemy penetration.
 - Added `isGameRunning` to handle when the player can fire, since without it the player would be able to fire a projectile during the win/lose screen and when the game was paused.
-- Modified `goToNextLevel` to prevent a memory leak using `timeline.stop` otherwise the game would attempt to load the next level without stopping the previous level.
-Reason: To provide a consistent parent class for managing shared game logic across levels.
+- Modified `goToNextLevel` to prevent a memory leak using `timeline.stop` otherwise the game would attempt to load the next level without stopping the previous level. This is to provide a consistent parent class for managing shared game logic across levels.
+
+**LevelViewLevelTwo**
+
+**Changes Made**
+- Refactored the addImagesToRoot method to improve clarity and responsibility by restricting it to adding only the shieldImage.
+- Removed unnecessary use of addAll in the original addImagesToRoot method since only the shieldImage is being added.
 
 **Unexpected Problems**
 
-Could not find a way to change observable.
-Resource Path Issues.
+- Background images and boss shield images caused errors when loaded.
+Solution: Used getResource() to safely fetch image files.
+- Enemy Spawn Lag, excessive enemy units caused performance issues during spawning.
+Solution: Reduced enemy count and adjusted spawn probability.
+- Could not find a way to change observable.
 
-Background images and boss shield images caused errors when loaded.
-Resolution: Used getResource() to safely fetch image files.
-Enemy Spawn Lag
 
-Excessive enemy units caused performance issues during spawning.
-Resolution: Reduced enemy count and adjusted spawn probability.
+
+
