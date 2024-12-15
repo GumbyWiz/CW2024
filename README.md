@@ -70,9 +70,40 @@ The reason for not implementing these changes were due to time constraints, I wa
 
 ## New Java Classes
 
-**Boss**
+**MainMenuController**
 
-**Changes made**
+**Purpose**
+- Initializes ScreenManager which will load the Main Menu
+- From there after pressing `Play` `LevelOne` will start.
+
+**Tutorial**
+
+**Purpose**
+- Shows the player how to play the game and the objectives of the game
+
+**ScreenManager**
+
+**Purpose**
+- Manages the FullScreen functionality of the game.
+- Shows the Main Menu from the fxml file.
+
+**MiniMenu**
+
+**Purpose**
+- Makes a mini menu that appears on the screen when a level is currently paused.
+- It has two buttons, one button is to `Continue` the game and unpauses it while the other button allows the player to `ReturnToMainMenu`.
+- The mini menu will appear in the middle of the screen.
+
+**Level Three**
+
+**Purpose**
+- Functionally the same as `LevelOne`, but more enemies spawn and they are faster
+- Advances to `LevelFour` after defeating a certain number of enemies.
+
+**Level Four**
+
+**Purpose**
+- The boss it initialized in the same way as in `LevelTwo` however, `spawnEnemyUnits` now spawns in enemies with the boss together and the goal is to defeat the boss and win.
 
 
 ## Modified Java Classes
@@ -81,11 +112,6 @@ The reason for not implementing these changes were due to time constraints, I wa
 
 **Changes made**
 - Most of the screen functions were moved to `ScreenManager`, therefore the main class calls the ScreenManager to handle the main menu when the appliation is running. This was because incorporating a fullscreen on the application would be easier if that implementation as on a seperate class completely.
-
-**Controller**
-
-**Changes made**
-
 
 **Boss**
 
@@ -157,7 +183,7 @@ The reason for not implementing these changes were due to time constraints, I wa
 - `boss=new Boss();` initializes the boss, without it the boss wont spawn in the level.
 - `spawnEnemyUnits` in this class only spawns the boss and no other enemies.
 - Implements a boss health shield.
-- Transitions to Level Three upon defeating the boss.
+- Transitions to `LevelThree` upon defeating the boss.
 - Initializes mini menu.
 
 
@@ -182,6 +208,9 @@ Solution: Used getResource() to safely fetch image files.
 - Enemy Spawn Lag, excessive enemy units caused performance issues during spawning.
 Solution: Reduced enemy count and adjusted spawn probability.
 - Could not find a way to change observable.
+- There was a NullPointer() exception that appeared which needed refactoring and the classes that had this issue consists of: `winImage`, `Gameoverimage`, `Tutorial`, `ShieldImahe`, `MiniMenu`, `HeartDisplay`. To fix this I used @throw IllegalArgumentException which would only happen if the resource had returned as a null value.
+- `MiniMenu` not appearing despite it being called multiple times and while the game is paused. As a solution I used `.toFront`, this allowed me to bring the minimenu to the front of the application and have it be displayed properly
+- Time constraints were a problem as I was busy with many things over the month, this caused me to mismanage my time and not be able to put my full focus and attention on this coursework. 
 
 
 
